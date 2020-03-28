@@ -8,5 +8,8 @@ package com.gemini.queue;
  */
 public class PriorityQueue<E> {
 
+    public static void main(String[] args) {
+        System.out.println("PriorityQueue.main");
+    }
 
 }
