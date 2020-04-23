@@ -16,4 +16,12 @@ import java.lang.annotation.Target;
 public @interface RedisKey {
 
     String value();
+
+    String prefix() default "";
+
+    /**
+     * 默认60秒
+     * @return
+     */
+    long timeout() default 60;
 }

@@ -69,13 +69,13 @@ public class DoHomeWorkAspect {
                 par[i] = parameters[i].getName();
             }
 
-            String key = SpelParser.getKey(redisKey.value(), par, joinPoint.getArgs());
+            String key = SpelParser.getKey(redisKey.prefix() + redisKey.value(), par, joinPoint.getArgs());
             Object o = redisTemplate.opsForValue().get(key);
             if (o != null) {
                 return o;
             }
             result = joinPoint.proceed();
-            redisTemplate.opsForValue().set(key, result, 1, TimeUnit.MINUTES);
+            redisTemplate.opsForValue().set(key, result, redisKey.timeout(), TimeUnit.SECONDS);
             System.out.println("环绕通知，方法执行后......");
         } catch (Throwable throwable) {
             throwable.printStackTrace();
