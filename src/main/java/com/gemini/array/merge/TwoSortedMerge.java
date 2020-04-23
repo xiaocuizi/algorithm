@@ -9,6 +9,43 @@ import java.util.Arrays;
  * @since 0.0.1 2020/3/27 10:45
  */
 public class TwoSortedMerge {
+      private Long uid;
+      private String name;
+      private String nickName;
+      private String headMinge;
+
+
+    public Long getUid() {
+        return uid;
+    }
+
+    public void setUid(Long uid) {
+        this.uid = uid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getHeadMinge() {
+        return headMinge;
+    }
+
+    public void setHeadMinge(String headMinge) {
+        this.headMinge = headMinge;
+    }
 
     public static void main(String[] args) {
         int[] nums1 = {1, 2, 3, 0, 0, 0};

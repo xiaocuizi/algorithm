@@ -28,6 +28,8 @@ import java.nio.file.StandardOpenOption;
 public class ChannelTest {
     public static final String SOURCE_PATH = "E:\\RocketMQ\\data\\rocketmq\\dataDir\\commitlog\\00000000001073741824";
     public static final String DEST_PATH = "D:\\downloads\\demo (1)\\00000000001073741824_____f";
+    public static final int POSITION = 0;
+
     public static void main(String[] args) throws Exception {
         long start = System.currentTimeMillis();
 //        test1();
@@ -59,7 +61,7 @@ public class ChannelTest {
                             // CREATE_NEW抛异常
                             StandardOpenOption.CREATE);
             // 获取内存映射文件
-            MappedByteBuffer inMappedByteBuffer = inChannel.map(FileChannel.MapMode.READ_ONLY, 0, inChannel.size());
+            MappedByteBuffer inMappedByteBuffer = inChannel.map(FileChannel.MapMode.READ_ONLY, POSITION, inChannel.size());
             MappedByteBuffer outMappedByteBuffer = outChannel.map(FileChannel.MapMode.READ_WRITE, 0, inChannel.size());
 
             // 直接对缓冲区进行数据的读写操作
