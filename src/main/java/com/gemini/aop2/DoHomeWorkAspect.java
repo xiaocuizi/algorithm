@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * todo (用一句话描述该文件做什么)
- *
+ *  通知厨师两点（连接点，切点）切面。。。
  * @author xiaocuizi
  * @since 0.0.1 2020/4/23 9:21
  */
@@ -69,7 +69,7 @@ public class DoHomeWorkAspect {
                 par[i] = parameters[i].getName();
             }
 
-            String key = SpelParser.getKey(redisKey.prefix() + redisKey.value(), par, joinPoint.getArgs());
+            String key = redisKey.prefix() + SpelParser.getKey(redisKey.value(), par, joinPoint.getArgs());
             Object o = redisTemplate.opsForValue().get(key);
             if (o != null) {
                 return o;
