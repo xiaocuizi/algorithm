@@ -76,7 +76,7 @@ public class TwoSortedMerge {
         while (p1 >= 0 && p2 >= 0) {
             nums1[p--] = (nums1[p1] < nums2[p2]) ? nums2[p2--] : nums1[p1--];
         }
-        System.arraycopy(nums2, 0, nums1, 0, p2 + 1);
+        // System.arraycopy(nums2, 0, nums1, 0, p2 + 1);
 
     }
 }

@@ -18,7 +18,8 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * todo (用一句话描述该文件做什么)
- *  通知厨师两点（连接点，切点）切面。。。
+ * 通知厨师两点（连接点，切点）切面。。。
+ *
  * @author xiaocuizi
  * @since 0.0.1 2020/4/23 9:21
  */
@@ -70,12 +71,18 @@ public class DoHomeWorkAspect {
             }
 
             String key = redisKey.prefix() + SpelParser.getKey(redisKey.value(), par, joinPoint.getArgs());
+
             Object o = redisTemplate.opsForValue().get(key);
             if (o != null) {
                 return o;
             }
+            Boolean bit = redisTemplate.opsForValue().getBit(key, 0);
+            if (bit == null || !bit) {
+                return null;
+            }
             result = joinPoint.proceed();
             redisTemplate.opsForValue().set(key, result, redisKey.timeout(), TimeUnit.SECONDS);
+            redisTemplate.opsForValue().setBit(key, 0, true);
             System.out.println("环绕通知，方法执行后......");
         } catch (Throwable throwable) {
             throwable.printStackTrace();

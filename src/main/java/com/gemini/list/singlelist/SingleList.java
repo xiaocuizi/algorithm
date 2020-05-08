@@ -1,7 +1,7 @@
 package com.gemini.list.singlelist;
 
 /**
- * todo (用一句话描述该文件做什么)
+ * 单列表反转
  *
  * @author xiaocuizi
  * @since 0.0.1  2020/3/25 10:24
@@ -31,11 +31,21 @@ public class SingleList {
         return newHead;
     }
 
+    public ListNode delNode(ListNode node) {
+        node.val = node.next.val;
+        node.next = node.next.next;
+        return node;
+    }
+
     private class ListNode {
         int val;
         ListNode next;
+
         ListNode(int x) {
             val = x;
         }
     }
+
+
 }
+

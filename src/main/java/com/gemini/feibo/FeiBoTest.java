@@ -1,5 +1,7 @@
 package com.gemini.feibo;
 
+import com.gemini.Times;
+
 /**
  * todo (用一句话描述该文件做什么)
  *
@@ -9,10 +11,16 @@ package com.gemini.feibo;
 public class FeiBoTest {
 
     public static void main(String[] args) {
-        long start = System.currentTimeMillis();
         long feibo = feibo6(42);
-        System.out.println(feibo);
-        System.out.println(System.currentTimeMillis() - start);
+        Times.test("斐波那契4",()->{
+            feibo4(42);
+        });
+        Times.test("斐波那契5",()->{
+            feibo5(42);
+        });
+        Times.test("斐波那契6",()->{
+            feibo6(42);
+        });
     }
 
 
