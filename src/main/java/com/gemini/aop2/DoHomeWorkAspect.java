@@ -82,7 +82,7 @@ public class DoHomeWorkAspect {
             }
             result = joinPoint.proceed();
             redisTemplate.opsForValue().set(key, result, redisKey.timeout(), TimeUnit.SECONDS);
-            redisTemplate.opsForValue().setBit(key, 0, true);
+
             System.out.println("环绕通知，方法执行后......");
         } catch (Throwable throwable) {
             throwable.printStackTrace();

@@ -14,6 +14,7 @@ public class IntTest {
 //        int i = 2 << 1;
 //        System.out.println(i);
         System.out.printf("result=%s", reverse(1534236469));
+        System.out.println(0.1*3==1*0.3);
     }
 
     private static int reverse(int x) {

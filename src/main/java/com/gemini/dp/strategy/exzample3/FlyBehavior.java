@@ -7,5 +7,6 @@ package com.gemini.dp.strategy.exzample3;
  * @since 0.0.1 2020/4/26 10:15
  */
 public interface FlyBehavior {
+
     public void fly();
 }

@@ -2,8 +2,12 @@ package com.gemini.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.beans.Transient;
+import java.io.Serializable;
 
 
 /**
@@ -17,10 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 0.0.1 2020/3/28 12:59
  */
 @RestController
-public class DockerController {
+public class DockerController implements Serializable {
     Logger log = LoggerFactory.getLogger(DockerController.class);
 
     @RequestMapping("/")
+    @Transactional
     public String index() {
         log.info("-------------------------------------------------");
         log.info("----Hello Docker!-------{}-----------",System.currentTimeMillis());

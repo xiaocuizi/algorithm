@@ -10,4 +10,10 @@ public class Test1 {
     private String name;
     public Test1() {
     }
+
+    public static void main(String[] args) {
+
+
+
+    }
 }
