@@ -1,5 +1,6 @@
 package com.gemini.thread;
 
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.locks.LockSupport;
 
 /**
@@ -10,14 +11,17 @@ import java.util.concurrent.locks.LockSupport;
  * @date 2020/3/26 12:56
  */
 public class PrintNum {
+    private static Object obj = new Object();
+    private static CountDownLatch latch = new CountDownLatch(1);
     static Thread t1 = null;
     static Thread t2 = null;
     static Thread t3 = null;
     static volatile int i = 1;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 //        print();
-        print2();
+//         print2();
+            print3();
     }
 
 
@@ -88,6 +92,41 @@ public class PrintNum {
 
         t1.start();
         t2.start();
+    }
+
+    private static void print3(){
+
+        char[] nums = "123456".toCharArray();
+        char[] words = "ABCDEF".toCharArray();
+        new Thread(() -> {
+            synchronized (obj) {
+                for (char num : nums) {
+                    System.out.printf("%s", num);
+                    try {
+                        obj.notify();
+                        obj.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                obj.notify();
+            }
+        }, "T1").start();
+
+        new Thread(() -> {
+            synchronized (obj) {
+                for (char c : words) {
+                    try {
+                        System.out.printf("%s", c);
+                        obj.notify();
+                        obj.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                obj.notify();
+            }
+        }, "T2").start();
     }
 
 }
